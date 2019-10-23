@@ -1,0 +1,12 @@
+{
+  "name": "login-lambda",
+  "version": "1.0.0",
+  "description": "Login validation",
+  "main": "index.js",
+  "author": "@github/caldwell619",
+  "dependencies": {
+    "aws-sdk": "^2.441.0",
+    "bcrypt-nodejs": "0.0.3",
+    "jsonwebtoken": "^8.5.1"
+  }
+}

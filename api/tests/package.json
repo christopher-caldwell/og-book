@@ -1,0 +1,21 @@
+{
+  "name": "sw-books-api",
+  "version": "1.0.0",
+  "description": "sw-books-api CICD pipeline",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "@github/caldwell619",
+  "devDependencies": {
+    "jest": "^24.7.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.441.0",
+    "aws-sdk-mock": "^4.4.0",
+    "aws-xray-sdk": "^2.3.3",
+    "bcrypt-nodejs": "0.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "uuid": "^3.3.2"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "book-post",
+  "version": "1.0.0",
+  "description": "Saving a book to a given list",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.441.0",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
