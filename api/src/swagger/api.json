@@ -1,0 +1,1499 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "furry-friends"
+  },
+  "host": "fr6pnyhq8e.execute-api.us-east-1.amazonaws.com",
+  "basePath": "/dev",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/{businessId}/employee/register": {
+      "post": {
+        "x-amazon-apigateway-request-validator": "Validate body",
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${EmployeeRegister.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "POST",
+          "type": "aws_proxy"
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "EmployeeRegister",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmployeeRegister"
+            }
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "requestTemplates": {
+            "application/json": "{\n  \"statusCode\" : 200\n}\n"
+          },
+          "type": "mock"
+        }
+      }
+    },
+    "/employee/login": {
+      "post": {
+        "x-amazon-apigateway-request-validator": "Validate body",
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${EmployeeLogin.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "POST",
+          "type": "aws_proxy"
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "EmployeeLogin",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmployeeLogin"
+            }
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "requestTemplates": {
+            "application/json": "{\n  \"statusCode\" : 200\n}\n"
+          },
+          "type": "mock"
+        }
+      }
+    },
+    "/{businessId}/admin/create/user": {
+      "post": {
+        "x-amazon-apigateway-request-validator": "Validate body",
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${EmployeeRegister.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "POST",
+          "type": "aws_proxy"
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "EmployeeRegister",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmployeeRegister"
+            }
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "requestTemplates": {
+            "application/json": "{\n  \"statusCode\" : 200\n}\n"
+          },
+          "type": "mock"
+        }
+      }
+    },
+    "/{businessId}/admin/create/admin": {
+      "post": {
+        "x-amazon-apigateway-request-validator": "Validate body",
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${AdminRegister.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "POST",
+          "type": "aws_proxy"
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "EmployeeRegister",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmployeeRegister"
+            }
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "requestTemplates": {
+            "application/json": "{\n  \"statusCode\" : 200\n}\n"
+          },
+          "type": "mock"
+        }
+      }
+    },
+    "/{businessId}/boarding/check-in": {
+      "post": {
+        "x-amazon-apigateway-request-validator": "Validate body",
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${NewBoardingCheckIn.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "POST",
+          "type": "aws_proxy"
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "BoardingCheckIn",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BoardingCheckIn"
+            }
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "requestTemplates": {
+            "application/json": "{\n  \"statusCode\" : 200\n}\n"
+          },
+          "type": "mock"
+        }
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${FindBoardingCheckIn.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "aws_proxy"
+        },
+      }
+    },
+    "/{businessId}/customer": {
+      "post": {
+        "x-amazon-apigateway-request-validator": "Validate body",
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${RegisterCustomer.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "POST",
+          "type": "aws_proxy"
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "RegisterCustomer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RegisterCustomer"
+            }
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "requestTemplates": {
+            "application/json": "{\n  \"statusCode\" : 200\n}\n"
+          },
+          "type": "mock"
+        }
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SearchIndividualCustomer.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "aws_proxy"
+        }
+      }
+    },
+    "/{businessId}/customer/all": {
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "requestTemplates": {
+            "application/json": "{\n  \"statusCode\" : 200\n}\n"
+          },
+          "type": "mock"
+        }
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SearchBusinessCustomers.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "aws_proxy"
+        }
+      }
+    },
+    "/{businessId}/pet": {
+      "post": {
+        "x-amazon-apigateway-request-validator": "Validate body",
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${RegisterPet.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "POST",
+          "type": "aws_proxy"
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "RegisterPet",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RegisterPet"
+            }
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "requestTemplates": {
+            "application/json": "{\n  \"statusCode\" : 200\n}\n"
+          },
+          "type": "mock"
+        }
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SearchIndividualPet.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "aws_proxy"
+        }
+      }
+    },
+    "/{businessId}/pet/all": {
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "requestTemplates": {
+            "application/json": "{\n  \"statusCode\" : 200\n}\n"
+          },
+          "type": "mock"
+        }
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Valid Response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Schema Failure",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          },
+          "502": {
+            "description": "Error executing the Lambda",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SearchBusinessPets.Arn}/invocations"
+          },
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "aws_proxy"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CheckIn": {
+      "type": "object",
+      "required": [
+        "IndividualId",
+        "BusinessDescription",
+        "TimeIn",
+        "TimeOut"
+      ],
+      "properties": {
+        "IndividualId": {
+          "type": "string",
+          "pattern": "^[a-z]{1,50}[.]{1}[a-z0-9]{1,50}$"
+        },
+        "BusinessDescription": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{1,100}[_]{1}[a-z0-9-]{1,300}$"
+        },
+        "TimeIn": {
+          "type": "number",
+          "pattern": "^\\d{1,20}$"
+        },
+        "TimeOut": {
+          "type": "number",
+          "pattern": "^\\d{1,20}$"
+        }
+      }
+    },
+    "EmployeeRegister": {
+      "type": "object",
+      "required": [
+        "IndividualId",
+        "BusinessDescription",
+        "EventDescription",
+        "Password",
+        "FirstName",
+        "LastName",
+        "ContactInfo",
+        "StartDate"
+      ],
+      "properties": {
+        "IndividualId": {
+          "type": "string",
+          "pattern": "^[a-z]{1,50}[.]{1}[a-z0-9]{1,50}$"
+        },
+        "BusinessDescription": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "EventDescription": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{1,100}[_]{1}[a-z0-9_.]{1,300}$"
+        },
+        "Password": {
+          "type": "string",
+          "pattern": "^[\\S]{1,30}$"
+        },
+        "FirstName": {
+          "type": "string",
+          "pattern": "^[\\S]{1,30}$"
+        },
+        "LastName": {
+          "type": "string",
+          "pattern": "^[\\S]{1,30}$"
+        },
+        "ContactInfo": {
+          "type": "object",
+          "required": [
+            "Address",
+            "PhoneNumber",
+            "Email"
+          ],
+          "properties": {
+            "Address": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9\\s]{1,200}[,]{1}[\\s]{1}[A-Z]{2}[\\s]{1}[0-9]{5}$"
+            },
+            "PhoneNumber": {
+              "type": "string",
+              "pattern": "^[(]{1}[\\d]{3}[)]{1}[\\s]{1}[0-9]{3}[-]{1}[0-9]{4}$"
+            },
+            "Email": {
+              "type": "string",
+              "pattern": "^[\\S]{1,50}[@]{1}[\\S]{1,50}[.]{1}[\\S]{1,10}$"
+            }
+          }
+        },
+        "StartDate": {
+          "type": "string",
+          "pattern": "^[\\d]{4}[-]{1}[\\d]{2}[-]{1}[\\d]{2}$"
+        }
+      }
+    },
+    "EmployeeLogin": {
+      "type": "object",
+      "required": [
+        "IndividualId",
+        "PlainTextPassword",
+        "BusinessId"
+      ],
+      "properties": {
+        "IndividualId": {
+          "type": "string",
+          "pattern": "^[a-z]{1,50}[.]{1}[a-z0-9]{1,50}$"
+        },
+        "PlainTextPassword": {
+          "type": "string",
+          "pattern": "^[\\S]{6,30}$"
+        },
+        "BusinessId": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9]{1,100}$"
+        }
+      }
+    },
+    "BoardingCheckIn": {
+      "type": "object",
+      "required": [
+        "IndividualId",
+        "BusinessDescription",
+        "BusinessId",
+        "BusinessEvent",
+        "EventDescription",
+        "Notes",
+        "Services",
+        "AssignedRun",
+        "LastEdit",
+        "InitialCreator",
+        "NightlyRate",
+        "NumberOfNights"
+      ],
+      "properties": {
+        "IndividualId": {
+          "type": "string",
+          "pattern": "^[\\S]{1,50}[@]{1}[\\S]{1,50}[.]{1}[\\S]{1,10}$"
+        },
+        "BusinessDescription": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "BusinessEvent": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "EventDescription": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9.]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "Notes": {
+          "type": "array"
+        },
+        "Services": {
+          "type": "array"
+        },
+        "AssignedRun": {
+          "type": "string",
+          "pattern": "[\\S]{1,100}$"
+        },
+        "LastEdit": {
+          "type": "object",
+          "required": [
+            "Name",
+            "Username",
+            "Date"
+          ],
+          "properties": {
+            "Name": {
+              "type": "string",
+              "pattern": "^[\\S]{1,30}$"
+            },
+            "Username": {
+              "type": "string",
+              "pattern": "^[a-z]{1,50}[.]{1}[a-z0-9]{1,50}$"
+            },
+            "Date": {
+              "type": "number",
+              "pattern": "^[\\d]{1,100}$"
+            }
+          }
+        },
+        "InitialCreator": {
+          "type": "object",
+          "required": [
+            "Name",
+            "Username",
+            "Date"
+          ],
+          "properties": {
+            "Name": {
+              "type": "string",
+              "pattern": "^[\\S]{1,30}$"
+            },
+            "Username": {
+              "type": "string",
+              "pattern": "^[a-z]{1,50}[.]{1}[a-z0-9]{1,50}$"
+            },
+            "Date": {
+              "type": "number",
+              "pattern": "^[\\d]{1,100}$"
+            }
+          }
+        },
+        "NightlyRate": {
+          "type": "string",
+          "pattern": "[\\d]{1,100}$"
+        },
+        "NumberOfNights": {
+          "type": "number",
+          "pattern": "[\\d]{1,100}$"
+        }
+      }
+    },
+    "RegisterCustomer": {
+      "type": "object",
+      "required": [
+        "IndividualId",
+        "BusinessDescription",
+        "BusinessEvent",
+        "EventDescription",
+        "FirstName",
+        "LastName",
+        "Address",
+        "PhoneNumber"
+      ],
+      "properties": {
+        "IndividualId": {
+          "type": "string",
+          "pattern": "^[\\S]{1,50}[@]{1}[\\S]{1,50}[.]{1}[\\S]{1,10}$"
+        },
+        "BusinessDescription": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "BusinessEvent": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "EventDescription": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9.]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "FirstName": {
+          "type": "string",
+          "pattern": "^[\\S]$"
+        },
+        "LastName": {
+          "type": "string",
+          "pattern": "^[\\S]$"
+        },
+        "PhoneNumber": {
+          "type": "number",
+          "pattern": "^[\\d]{10}$"
+        },
+        "Address": {
+          "type": "object",
+          "properties": {
+            "StreetAddress": {
+              "type": "string",
+              "pattern": "[\\d]{1,20}[\\s]{1}[\\S]{1,100}[\\s]{1}[\\S]{1,20}$"
+            },
+            "City": {
+              "type": "string",
+              "pattern": "[\\S]{1,100}$"
+            },
+            "State": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            }
+          }
+        }
+      }
+    },
+    "RegisterPet": {
+      "type": "object",
+      "required": [
+        "IndividualId",
+        "BusinessDescription",
+        "BusinessEvent",
+        "EventDescription",
+        "Name",
+        "Owner",
+        "Color",
+        "Breed",
+        "Type",
+        "Weight",
+        "Size",
+        "Sex",
+        "Birthday"
+      ],
+      "properties": {
+        "IndividualId": {
+          "type": "string",
+          "pattern": "^[\\S]{1,50}[@]{1}[\\S]{1,50}[.]{1}[\\S]{1,10}$"
+        },
+        "BusinessDescription": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "BusinessEvent": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "EventDescription": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9.]{1,100}[_]{1}[a-z0-9_]{1,300}$"
+        },
+        "Name": {
+          "type": "string",
+          "pattern": "^[\\S]{1,100}$"
+        },
+        "Owner": {
+          "type": "object",
+          "required": [
+            "FirstName",
+            "LastName",
+            "Email"
+          ],
+          "properties": {
+            "FirstName": {
+              "type": "string",
+              "pattern": "^[\\S]{1,100}$"
+            },
+            "LastName": {
+              "type": "string",
+              "pattern": "^[\\S]{1,100}$"
+            },
+            "Email": {
+              "type": "string",
+              "pattern": "^[\\S]{1,50}[@]{1}[\\S]{1,50}[.]{1}[\\S]{1,10}$"
+            }
+          }
+        },
+        "Color": {
+          "type": "string",
+          "pattern": "^[\\S]{1,100}$"
+        },
+        "Breed": {
+          "type": "string",
+          "pattern": "^[\\S]{1,200}$"
+        },
+        "Type": {
+          "type": "string",
+          "pattern": "^[\\S]{1,200}$"
+        },
+        "Weight": {
+          "type": "number",
+          "pattern": "^[\\d]{1,3}$"
+        },
+        "Size": {
+          "type": "string",
+          "pattern": "^[a-zA-Z]{1,10}$"
+        },
+        "Sex": {
+          "type": "string",
+          "pattern": "^[a-zA-Z]{3,4}$"
+        },
+        "Birthday": {
+          "type": "number",
+          "pattern": "^[\\d]{1,1000000000000000000000000000000000}$"
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-request-validators": {
+    "Validate body": {
+      "validateRequestParameters": false,
+      "validateRequestBody": true
+    },
+    "Validate query string parameters": {
+      "validateRequestParameters": true,
+      "validateRequestBody": false
+    }
+  }
+}

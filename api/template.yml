@@ -1,0 +1,280 @@
+Transform: "AWS::Serverless-2016-10-31"
+Globals:
+  Api:
+    TracingEnabled: true
+    Cors:
+      AllowMethods: "'*'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'*'"
+  Function:
+    Runtime: nodejs10.x
+    Tracing: Active
+    Environment:
+      Variables:
+        TABLE_NAME: dev-sw-books
+        SIGNING_KEY_NAME: SigningKey
+Resources:
+  ########### Lambda ###########
+  LambdaLocalCorsStub:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/options/
+      Handler: index.handler
+      FunctionName: cors_handler_FF
+      Timeout: 30
+      Events:
+        ClockInOptions:
+          Type: Api
+          Properties:
+            RestApiId: !Ref FurryFriendsAPI
+            Path: /{businessId}/{cors+}
+            Method: OPTIONS
+
+  LambdaAuthorizer:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/authorizer/
+      Handler: index.handler
+  
+  Authorizer:
+    Type: 'AWS::ApiGateway::Authorizer'
+    Properties:
+      AuthorizerCredentials: arn:aws:iam::867997404618:role/BasicLambdaRole
+      AuthorizerResultTtlInSeconds: '300'
+      AuthorizerUri: !Join 
+        - ''
+        - - 'arn:aws:apigateway:'
+          - !Ref 'AWS::Region'
+          - ':lambda:path/2015-03-31/functions/'
+          - !GetAtt 
+            - LambdaAuthorizer
+            - Arn
+          - /invocations
+      Type: TOKEN
+      IdentitySource: method.request.header.Auth
+      Name: DefaultAuthorizer
+      RestApiId: !Ref FurryFriendsAPI
+
+  # User
+  AdminRegister:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/admin/create/admin
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /{businessId}/admin/create/admin
+            Method: post
+            RestApiId: !Ref FurryFriendsAPI
+
+  UserRegister:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/admin/create/user
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /create/user
+            Method: post
+            RestApiId: !Ref FurryFriendsAPI
+
+  EmployeeLogin:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/employee/login
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /employee/login
+            Method: post
+            RestApiId: !Ref FurryFriendsAPI
+
+  # Boarding
+  NewBoardingCheckIn:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/boarding/check-in/post
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /{businessId}/boarding/check-in
+            Method: post
+            RestApiId: !Ref FurryFriendsAPI
+
+  FindBoardingCheckIn:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/boarding/check-in/get
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /{businessId}/boarding/check-in
+            Method: get
+            RestApiId: !Ref FurryFriendsAPI
+
+  # Client
+
+  RegisterCustomer:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/customer/post
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /{businessId}/customer
+            Method: post
+            RestApiId: !Ref FurryFriendsAPI
+
+  SearchIndividualCustomer:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/customer/get
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /{businessId}/customer
+            Method: get
+            RestApiId: !Ref FurryFriendsAPI
+
+  SearchBusinessCustomers:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/general/reverse-lookup
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /{businessId}/customer/all
+            Method: get
+            RestApiId: !Ref FurryFriendsAPI
+
+  # Pets
+  RegisterPet:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/pet/post
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /{businessId}/pet
+            Method: post
+            RestApiId: !Ref FurryFriendsAPI
+
+  SearchIndividualPet:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/pet/get
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /{businessId}/pet
+            Method: get
+            RestApiId: !Ref FurryFriendsAPI
+
+  SearchBusinessPets:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/general/reverse-lookup
+      Handler: index.handler
+      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            Path: /{businessId}/pet/all
+            Method: post
+            RestApiId: !Ref FurryFriendsAPI
+
+  ########### API ###########
+  FurryFriendsAPI:
+    Type: AWS::Serverless::Api
+    Auth:
+      MyLambdaTokenAuth:
+        FunctionPayloadType: TOKEN
+        FunctionArn: !GetAtt LambdaAuthorizer.Arn
+        Identity:
+          Header: Authorization
+          ReauthorizeEvery: 300
+    Properties:
+      Name: Furry-Friends
+      StageName: dev
+      DefinitionBody:
+        "Fn::Transform":
+          Name: "AWS::Include"
+          Parameters:
+            Location: s3://furry-friends-builds/swagger-api-template.json
+
+  ########### DB ###########
+  SWBooksDB:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: dev-sw-books
+      AttributeDefinitions:
+        - AttributeName: IndividualId
+          AttributeType: S
+        - AttributeName: BusinessDescription
+          AttributeType: S
+        - AttributeName: BusinessEvent
+          AttributeType: S
+        - AttributeName: EventDescription
+          AttributeType: S
+        - AttributeName: PetCheckoutDate
+          AttributeType: S
+      KeySchema:
+        - AttributeName: IndividualId
+          KeyType: HASH
+        - AttributeName: BusinessDescription
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: "BusinessEvents"
+          KeySchema:
+            - AttributeName: "BusinessEvent"
+              KeyType: "HASH"
+            - AttributeName: "EventDescription"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+          ProvisionedThroughput:
+            ReadCapacityUnits: "5"
+            WriteCapacityUnits: "5"
+      LocalSecondaryIndexes:
+        - IndexName: "CheckOutDate"
+          KeySchema:
+            - AttributeName: "IndividualId"
+              KeyType: "HASH"
+            - AttributeName: "PetCheckoutDate"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
