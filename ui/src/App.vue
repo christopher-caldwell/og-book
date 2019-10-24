@@ -8,8 +8,8 @@
 
 <script>
 import { mapActions } from 'vuex'
-import Header from "@/components/header/Header.vue";
-const Footer = () => import("@/components/footer/Footer.vue");
+import Header from '@/components/header/Header.vue'
+import Footer from '@/components/footer/Footer.vue'
 
 export default {
   components: {
