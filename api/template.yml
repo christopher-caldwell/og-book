@@ -70,7 +70,7 @@ Resources:
             Method: post
             RestApiId: !Ref SWBooksAPI
 
-  UserRegister:
+  UserCreate:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/lambdas/user/create
@@ -153,14 +153,14 @@ Resources:
     Properties:
       TableName: dev-sw-books
       AttributeDefinitions:
-        - AttributeName: Identifier
+        - AttributeName: identifier
           AttributeType: S
-        - AttributeName: ResourceType
+        - AttributeName: resourceType
           AttributeType: S
       KeySchema:
-        - AttributeName: Identifier
+        - AttributeName: identifier
           KeyType: HASH
-        - AttributeName: ResourceType
+        - AttributeName: resourceType
           KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: 5

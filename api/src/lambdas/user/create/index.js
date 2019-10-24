@@ -30,7 +30,7 @@ const secretsParams = {
 };
 
 exports.handler = async event => {
-	const { firstName, lastName, emailAddress, plainTextPassword } = JSON.parse(event.body);
+	const { firstName, lastName, identifier, plainTextPassword } = JSON.parse(event.body);
 	// add validation
 	const hashedPassword = await bcyrpt.hash(plainTextPassword, numberOfSaltRounds);
 	const params = {
@@ -38,7 +38,7 @@ exports.handler = async event => {
 		Item: {
       firstName,
       lastName,
-      emailAddress,
+      identifier,
       password: hashedPassword,
       createdAt: Date.now(),
       isVerified: false
