@@ -2,7 +2,7 @@
   v-app
     Header
     v-content
-      router-view
+      router-view(v-if="applicationIsReady")
     Footer
 </template>
 
@@ -18,6 +18,11 @@ export default {
   },
   methods: {
     ...mapActions(['boot'])
+  },
+  computed: {
+    applicationIsReady(){
+      return this.$store.isApplicationReady
+    }
   },
   created(){
     this.boot()

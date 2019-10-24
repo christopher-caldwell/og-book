@@ -10,11 +10,7 @@ export default new Vuex.Store({
   state: {
     applicationIsReady: false
   },
-  getters: {
-    isApplicationReady(state){
-      return state.isApplicationReady
-    }
-  },
+  getters: {},
   actions: {
     boot({ commit, dispatch }){
       dispatch('session/restoreSessionFromLocalStorage')
