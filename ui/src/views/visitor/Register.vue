@@ -139,10 +139,10 @@ export default {
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.isInputErrors = true
-        if (!this.$v.emailAddress.email){
+        if (!this.$v.emailAddress.email) {
           this.inputErrorMessages.push('Must be a valid email')
         }
-        if (!this.$v.emailAddress.required){
+        if (!this.$v.emailAddress.required) {
           this.inputErrorMessages.push('Field is required')
         }
       } else {

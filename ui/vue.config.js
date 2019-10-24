@@ -1,11 +1,10 @@
-// if the stage is qa or dev, include source maps
 const areSourceMapsIncluded = process.env.VUE_APP_STAGE === 'dev' || process.env.VUE_APP_STAGE === 'qa'
 
 module.exports = {
   pluginOptions: {
     webpackBundleAnalyzer: {
-      openAnalyzer: false,
-    },
+      openAnalyzer: false
+    }
   },
   transpileDependencies: [
     'vuetify'
@@ -18,7 +17,7 @@ module.exports = {
     optimization: {
       splitChunks: {
         minSize: 10000,
-        maxSize: 200000,
+        maxSize: 200000
       }
     }
   }
