@@ -1,32 +1,40 @@
-<template>
-  <router-link :to="route.path" class="link">
-    <v-list-tile-action>
-      <v-icon>{{ route.icon }}</v-icon>
-    </v-list-tile-action>
-
-    <v-list-tile-content>
-      <v-list-tile-title class="nav">{{ route.title }}</v-list-tile-title>
-    </v-list-tile-content>
-  </router-link>
+<template lang='pug'>
+  router-link.link(:to="{path: route.path}" v-if="!route.divider")
+    v-list-item
+      v-list-item-action
+        v-icon {{route.icon}}    
+      v-list-item-content
+        v-list-item-title {{route.title}}
+  span(v-else)
+    v-divider
+    v-subheader {{ route.header }}
 </template>
 
 <script>
 export default {
+  name: 'NavMenuItem',
   props: {
     route: Object
-  }
+  },
+  computed: {
+    institutionId(){
+      return '123'
+    }
+  },
 };
 </script>
 
-<style scoped>
-.link {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 20px 20px 0;
-}
-.nav {
-  color: white;
-  font-size: 150%;
-}
+<style lang='sass' scoped>
+a 
+  text-decoration: none
+.link 
+  width: 100%
+  display: flex
+  justify-content: space-between
+  margin: 3% 3% 3% 0
+
+.nav
+  color: white
+  font-size: 150%
+
 </style>

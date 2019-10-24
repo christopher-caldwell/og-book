@@ -102,7 +102,7 @@ Resources:
   SaveBook:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/lambdas/book/save
+      CodeUri: src/lambdas/books/save
       Handler: index.handler
       Role: arn:aws:iam::867997404618:role/BasicLambdaRole
       Events:
@@ -116,7 +116,7 @@ Resources:
   SearchBooks:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/lambdas/book/search
+      CodeUri: src/lambdas/books/search
       Handler: index.handler
       Role: arn:aws:iam::867997404618:role/BasicLambdaRole
       Events:
