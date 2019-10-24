@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Header from "@/components/header/Header.vue";
 const Footer = () => import("@/components/footer/Footer.vue");
 
@@ -14,6 +15,12 @@ export default {
   components: {
     Header,
     Footer
+  },
+  methods: {
+    ...mapActions(['boot'])
+  },
+  created(){
+    this.boot()
   }
 };
 </script>

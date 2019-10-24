@@ -8,7 +8,10 @@ export default {
   getters: {
     isSessionValid(state){
       return state.expiredDate > Date.now()
-    } 
+    },
+    authToken(state){
+      return state.token
+    }
   },
   actions: {
     beginNewSession({ commit }, token){
@@ -26,6 +29,7 @@ export default {
   },
   mutations: {
     UPDATE_SESSION(state, token){
+      localStorage.setItem('session', JSON.stringify({ token, expiredDate: Date.now() + timeSessionIsValid }))
       state.token = token
       state.expiredDate = Date.now() + timeSessionIsValid
     },

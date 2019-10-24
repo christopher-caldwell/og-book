@@ -1,3 +1,12 @@
 <template lang='pug'>
-  div
+  router-view(v-if="isApplicationReady")
 </template>
+
+<script>
+  import { mapGetters } from 'vuex'
+  export default {
+    computed: {
+      ...mapGetters(['isApplicationReady'])
+    }
+  }
+</script>

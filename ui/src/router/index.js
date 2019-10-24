@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-const Root = () =>  import('../views/Root.vue')
-const Login = () =>  import('../components/visitor/Login.vue')
-const Register = () =>  import('../components/visitor/Register.vue')
-const Profile = () =>  import('../components/user/Profile.vue')
-const BookList = () =>  import('../components/visitor/BookList.vue')
-const DetailedBook = () =>  import('../components/visitor/DetailedBook.vue')
-const ReadBooks = () =>  import('../components/user/ReadBooks.vue')
+const Root = () =>  import('@/views/Root.vue')
+const Visitor = () =>  import('@/views/Visitor.vue')
+const User = () =>  import('@/views/User.vue')
+const Login = () =>  import('@/components/visitor/Login.vue')
+const Register = () =>  import('@/components/visitor/Register.vue')
+const Profile = () =>  import('@/components/user/Profile.vue')
+const BookList = () =>  import('@/components/visitor/BookList.vue')
+const DetailedBook = () =>  import('@/components/visitor/DetailedBook.vue')
+const ReadBooks = () =>  import('@/components/user/ReadBooks.vue')
 
 Vue.use(VueRouter)
 

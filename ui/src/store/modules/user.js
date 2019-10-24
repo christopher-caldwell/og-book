@@ -22,7 +22,7 @@ export default {
         console.log('reg error', error)
       }
     },
-    restoreSessionFromLocalStorage({ commit }){
+    restoreUserFromLocalStorage({ commit }){
       const previousUser = JSON.parse(localStorage.getItem('user'))
       if (previousUser) {
         commit('UPDATE_USER_INFORMATION', previousUser)
