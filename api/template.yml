@@ -55,7 +55,7 @@ Resources:
       Name: DefaultAuthorizer
       RestApiId: !Ref FurryFriendsAPI
 
-  # User
+# User
   AdminRegister:
     Type: AWS::Serverless::Function
     Properties:
