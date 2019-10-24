@@ -26,8 +26,8 @@ Resources:
         ClockInOptions:
           Type: Api
           Properties:
-            RestApiId: !Ref FurryFriendsAPI
-            Path: /{businessId}/{cors+}
+            RestApiId: !Ref SWBooksAPI
+            Path: /{cors+}
             Method: OPTIONS
 
   LambdaAuthorizer:
