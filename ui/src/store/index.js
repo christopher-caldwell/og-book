@@ -13,8 +13,8 @@ export default new Vuex.Store({
   getters: {},
   actions: {
     boot({ commit, dispatch }) {
-      dispatch('session/restoreSessionFromLocalStorage')
-      dispatch('user/restoreUserFromLocalStorage')
+      dispatch('restoreSessionFromLocalStorage')
+      dispatch('restoreUserFromLocalStorage')
       commit('APPLICATION_READY')
     }
   },

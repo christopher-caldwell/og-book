@@ -139,8 +139,12 @@ export default {
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.isInputErrors = true
-        !this.$v.emailAddress.email && this.inputErrorMessages.push('Must be a valid email')
-        !this.$v.emailAddress.required && this.inputErrorMessages.push('Field is required')
+        if (!this.$v.emailAddress.email){
+          this.inputErrorMessages.push('Must be a valid email')
+        }
+        if (!this.$v.emailAddress.required){
+          this.inputErrorMessages.push('Field is required')
+        }
       } else {
         this.$v.$reset
         this.inputErrorMessages = []
@@ -187,7 +191,9 @@ export default {
     },
     lastNameErrors() {
       const errorMessages = []
-      if (!this.$v.password.$dirty) return errorMessages
+      if (!this.$v.password.$dirty) {
+        return errorMessages
+      }
       !this.$v.lastName.required && errorMessages.push('Field is required')
       return errorMessages
     },

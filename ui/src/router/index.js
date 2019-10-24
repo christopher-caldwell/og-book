@@ -25,29 +25,29 @@ const routes = [
     component: Root,
   },
   {
-    path: 'visitor',
+    path: '/visitor',
     name: 'Visitor',
     component: Visitor,
     children: [
       {
-        path: 'register',
+        path: '/register',
         name: 'Register',
         component: Register
       },
       {
-        path: 'login',
+        path: '/login',
         name: 'Login',
         component: Login
       },
       {
-        path: 'forgot-password',
+        path: '/forgot-password',
         name: 'ForgotPassword',
         component: ForgotPassword
       },
     ]
   },
   {
-    path: 'user',
+    path: '/user',
     name: 'User',
     component: User,
     beforeRouteEnter(to, from, next) {
