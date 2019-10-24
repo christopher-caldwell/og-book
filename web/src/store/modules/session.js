@@ -1,4 +1,5 @@
 import { timeSessionIsValid } from '@/store/constants'
+import { authenticatedRoutes, regularAdminRoutes, visitorRoutes } from '@/router/staticRoutes'
 
 export default {
   state: {
@@ -12,9 +13,13 @@ export default {
     },
     allowableRoutes(state) {
       const isSessionValid = state.expiredDate > Date.now()
-      if (state.user.isAuthenticated && isSessionValid && state.user.role === 'admin') return authenticatedRoutes
-      if (state.user.isAuthenticated && isSessionValid && state.user.role === 'user') return regularAdminRoutes
-      return visitorRoutes
+      if(state.user){
+        if (state.user.isAuthenticated && isSessionValid && state.user.role === 'admin') return authenticatedRoutes
+        if (state.user.isAuthenticated && isSessionValid && state.user.role === 'user') return regularAdminRoutes
+        else return visitorRoutes
+      } else {
+        return visitorRoutes
+      }
     },
   },
   actions: {
@@ -43,7 +48,7 @@ export default {
       state.isAuthenticated = true
     },
     END_SESSION(state) {
-      localStorage.setItem('session', JSON.stringify({ token, expiredDate: 0, isAuthenticated: false }))
+      localStorage.setItem('session', JSON.stringify({ token: '', expiredDate: 0, isAuthenticated: false }))
       state.token = ''
       state.isAuthenticated = false
       state.expiredDate = 0

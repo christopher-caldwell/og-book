@@ -45,7 +45,6 @@ export default {
       // try recursion, passing a filtered array into the function
       const keys = Object.keys(value)
       const values = Object.values(value)
-      const count = 0
       const returnedBooks = []
       values.forEach((value) => {
         if (value !== '') {
