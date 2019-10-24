@@ -1,9 +1,0 @@
-{
-  "name": "book-get",
-  "version": "1.0.0",
-  "description": "Retreving a list of a book in a given list",
-  "main": "index.js",
-  "dependencies": {
-    "aws-sdk": "^2.441.0"
-  }
-}

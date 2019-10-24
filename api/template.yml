@@ -14,7 +14,7 @@ Globals:
         TABLE_NAME: dev-sw-books
         SIGNING_KEY_NAME: SigningKey
 Resources:
-  ########### Lambda ###########
+########### Lambda ###########
   LambdaLocalCorsStub:
     Type: AWS::Serverless::Function
     Properties:
@@ -59,163 +59,77 @@ Resources:
   AdminRegister:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/lambdas/admin/create/admin
+      CodeUri: src/lambdas/admin/create
       Handler: index.handler
       Role: arn:aws:iam::867997404618:role/BasicLambdaRole
       Events:
         Register:
           Type: Api
           Properties:
-            Path: /{businessId}/admin/create/admin
+            Path: /admin/create/
             Method: post
-            RestApiId: !Ref FurryFriendsAPI
+            RestApiId: !Ref SWBooksAPI
 
   UserRegister:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/lambdas/admin/create/user
+      CodeUri: src/lambdas/user/create
       Handler: index.handler
       Role: arn:aws:iam::867997404618:role/BasicLambdaRole
       Events:
         Register:
           Type: Api
           Properties:
-            Path: /create/user
+            Path: /user/create
             Method: post
-            RestApiId: !Ref FurryFriendsAPI
+            RestApiId: !Ref SWBooksAPI
 
-  EmployeeLogin:
+  UserLogin:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/lambdas/employee/login
+      CodeUri: src/lambdas/user/login
       Handler: index.handler
       Role: arn:aws:iam::867997404618:role/BasicLambdaRole
       Events:
         Register:
           Type: Api
           Properties:
-            Path: /employee/login
+            Path: /user/login
             Method: post
-            RestApiId: !Ref FurryFriendsAPI
+            RestApiId: !Ref SWBooksAPI
 
-  # Boarding
-  NewBoardingCheckIn:
+# Books
+  SaveBook:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/lambdas/boarding/check-in/post
+      CodeUri: src/lambdas/book/save
       Handler: index.handler
       Role: arn:aws:iam::867997404618:role/BasicLambdaRole
       Events:
         Register:
           Type: Api
           Properties:
-            Path: /{businessId}/boarding/check-in
+            Path: /book/save
             Method: post
-            RestApiId: !Ref FurryFriendsAPI
+            RestApiId: !Ref SWBooksAPI
 
-  FindBoardingCheckIn:
+  SearchBooks:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/lambdas/boarding/check-in/get
+      CodeUri: src/lambdas/book/search
       Handler: index.handler
       Role: arn:aws:iam::867997404618:role/BasicLambdaRole
       Events:
         Register:
           Type: Api
           Properties:
-            Path: /{businessId}/boarding/check-in
-            Method: get
-            RestApiId: !Ref FurryFriendsAPI
-
-  # Client
-
-  RegisterCustomer:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/lambdas/customer/post
-      Handler: index.handler
-      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
-      Events:
-        Register:
-          Type: Api
-          Properties:
-            Path: /{businessId}/customer
+            Path: /book/search
             Method: post
-            RestApiId: !Ref FurryFriendsAPI
+            RestApiId: !Ref SWBooksAPI
 
-  SearchIndividualCustomer:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/lambdas/customer/get
-      Handler: index.handler
-      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
-      Events:
-        Register:
-          Type: Api
-          Properties:
-            Path: /{businessId}/customer
-            Method: get
-            RestApiId: !Ref FurryFriendsAPI
-
-  SearchBusinessCustomers:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/lambdas/general/reverse-lookup
-      Handler: index.handler
-      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
-      Events:
-        Register:
-          Type: Api
-          Properties:
-            Path: /{businessId}/customer/all
-            Method: get
-            RestApiId: !Ref FurryFriendsAPI
-
-  # Pets
-  RegisterPet:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/lambdas/pet/post
-      Handler: index.handler
-      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
-      Events:
-        Register:
-          Type: Api
-          Properties:
-            Path: /{businessId}/pet
-            Method: post
-            RestApiId: !Ref FurryFriendsAPI
-
-  SearchIndividualPet:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/lambdas/pet/get
-      Handler: index.handler
-      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
-      Events:
-        Register:
-          Type: Api
-          Properties:
-            Path: /{businessId}/pet
-            Method: get
-            RestApiId: !Ref FurryFriendsAPI
-
-  SearchBusinessPets:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/lambdas/general/reverse-lookup
-      Handler: index.handler
-      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
-      Events:
-        Register:
-          Type: Api
-          Properties:
-            Path: /{businessId}/pet/all
-            Method: post
-            RestApiId: !Ref FurryFriendsAPI
-
-  ########### API ###########
-  FurryFriendsAPI:
+  
+########### API ###########
+  SWBooksAPI:
     Type: AWS::Serverless::Api
     Auth:
       MyLambdaTokenAuth:
@@ -225,56 +139,29 @@ Resources:
           Header: Authorization
           ReauthorizeEvery: 300
     Properties:
-      Name: Furry-Friends
+      Name: SW-Books
       StageName: dev
       DefinitionBody:
         "Fn::Transform":
           Name: "AWS::Include"
           Parameters:
-            Location: s3://furry-friends-builds/swagger-api-template.json
+            Location: s3://sw-books-builds/swagger-api-template.json
 
-  ########### DB ###########
+########### DB ###########
   SWBooksDB:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: dev-sw-books
       AttributeDefinitions:
-        - AttributeName: IndividualId
+        - AttributeName: Identifier
           AttributeType: S
-        - AttributeName: BusinessDescription
-          AttributeType: S
-        - AttributeName: BusinessEvent
-          AttributeType: S
-        - AttributeName: EventDescription
-          AttributeType: S
-        - AttributeName: PetCheckoutDate
+        - AttributeName: ResourceType
           AttributeType: S
       KeySchema:
-        - AttributeName: IndividualId
+        - AttributeName: Identifier
           KeyType: HASH
-        - AttributeName: BusinessDescription
+        - AttributeName: ResourceType
           KeyType: RANGE
-      GlobalSecondaryIndexes:
-        - IndexName: "BusinessEvents"
-          KeySchema:
-            - AttributeName: "BusinessEvent"
-              KeyType: "HASH"
-            - AttributeName: "EventDescription"
-              KeyType: "RANGE"
-          Projection:
-            ProjectionType: "ALL"
-          ProvisionedThroughput:
-            ReadCapacityUnits: "5"
-            WriteCapacityUnits: "5"
-      LocalSecondaryIndexes:
-        - IndexName: "CheckOutDate"
-          KeySchema:
-            - AttributeName: "IndividualId"
-              KeyType: "HASH"
-            - AttributeName: "PetCheckoutDate"
-              KeyType: "RANGE"
-          Projection:
-            ProjectionType: "ALL"
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
