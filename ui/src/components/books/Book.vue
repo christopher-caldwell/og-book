@@ -25,7 +25,7 @@ export default {
   props: {
     book: Object
   }
-};
+}
 </script>
 
 <style>
@@ -45,4 +45,3 @@ export default {
   margin-bottom: 40px !important;
 }
 </style>
-

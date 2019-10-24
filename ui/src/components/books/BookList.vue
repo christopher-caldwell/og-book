@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import Book from "../util/Book";
-import books from "../../staticData/books.js";
-import FormPopup from "./dialog/FormPopup";
+import Book from '../util/Book'
+import books from '../../staticData/books.js'
+import FormPopup from './dialog/FormPopup'
 
 export default {
   components: {
@@ -30,53 +30,53 @@ export default {
   data() {
     return {
       books
-    };
+    }
   },
   computed: {
     open() {
-      return this.$store.state.formPopup;
+      return this.$store.state.formPopup
     }
   },
   methods: {
     openPopup() {
-      this.$store.commit("toggleFormPopup", "open");
+      this.$store.commit('toggleFormPopup', 'open')
     },
     filter(value) {
       // try recursion, passing a filtered array into the function
-      const keys = Object.keys(value);
-      const values = Object.values(value);
-      let count = 0;
-      let returnedBooks = [];
-      values.forEach(value => {
-        if (value !== "") {
-          books.forEach(book => {
+      const keys = Object.keys(value)
+      const values = Object.values(value)
+      const count = 0
+      const returnedBooks = []
+      values.forEach((value) => {
+        if (value !== '') {
+          books.forEach((book) => {
             if (JSON.stringify(book).includes(JSON.stringify(value))) {
-              returnedBooks.push(book);
+              returnedBooks.push(book)
             }
-          });
+          })
         }
-      });
+      })
 
-      this.books = returnedBooks;
+      this.books = returnedBooks
     },
     secondFilter(value) {
-      let returnedBooks = [];
-      const keyPairs = Object.entries(value);
-      keyPairs.forEach(pair => {
-        if (pair[1] !== "") {
-          books.forEach(book => {
+      const returnedBooks = []
+      const keyPairs = Object.entries(value)
+      keyPairs.forEach((pair) => {
+        if (pair[1] !== '') {
+          books.forEach((book) => {
             if (book[pair[0]].toLowerCase().includes(pair[1].toLowerCase())) {
-              returnedBooks.push(book);
+              returnedBooks.push(book)
             }
-          });
+          })
         }
-      });
+      })
       // loop again accounting for legends
 
-      this.books = returnedBooks;
+      this.books = returnedBooks
     }
   }
-};
+}
 </script>
 
 <style>

@@ -21,14 +21,14 @@ export default {
   },
   data() {
     return {
-      list: "",
-      select: ["Wishlist", "In Progress", "Favorites"]
-    };
+      list: '',
+      select: ['Wishlist', 'In Progress', 'Favorites']
+    }
   },
   methods: {
     closePopup(event) {
-      this.$emit("closePopup", { action: event, list: this.list });
+      this.$emit('closePopup', { action: event, list: this.list })
     }
   }
-};
+}
 </script>

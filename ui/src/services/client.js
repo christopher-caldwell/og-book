@@ -12,15 +12,15 @@ let authToken = null
 
 // Inject current API token into each request.
 client.interceptors.request.use((config) => {
-  if(store.getters['authToken']) {
-    authToken = store.getters['authToken']
-  } else if(previousState && previousState.token) {
+  if (store.getters.authToken) {
+    authToken = store.getters.authToken
+  } else if (previousState && previousState.token) {
     authToken = previousState.token
   }
 
   // only inject if not set
   if (!config.headers.Authorization && authToken) {
-    config.headers['Authorization'] = authToken
+    config.headers.Authorization = authToken
   }
 
   // Remember to unblock on CORS

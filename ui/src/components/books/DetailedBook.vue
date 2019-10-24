@@ -49,11 +49,11 @@
 </template>
 
 <script>
-import books from "../../staticData/books.js";
-import AddTo from "./dialog/AddTo";
-import SaveDialog from "./dialog/SaveDialog";
-import moment from "moment";
-import axios from "axios";
+import moment from 'moment'
+import axios from 'axios'
+import books from '../../staticData/books.js'
+import AddTo from './dialog/AddTo'
+import SaveDialog from './dialog/SaveDialog'
 
 export default {
   components: {
@@ -65,52 +65,52 @@ export default {
       book: null,
       showListDialog: false,
       showSaveDialog: false
-    };
+    }
   },
   beforeMount() {
-    let book = books.filter(
+    const book = books.filter(
       book => book.id === Number(this.$route.params.id)
-    )[0];
-    book.releaseDate = moment(book.releaseDate).format("MMMM Do YYYY");
-    book.legends = book.legends ? "Yes" : "No";
+    )[0]
+    book.releaseDate = moment(book.releaseDate).format('MMMM Do YYYY')
+    book.legends = book.legends ? 'Yes' : 'No'
 
-    this.book = book;
+    this.book = book
   },
   methods: {
     listDialogAction(event) {
-      if (event.action === "close") {
-        this.showListDialog = false;
+      if (event.action === 'close') {
+        this.showListDialog = false
       } else {
-        const params = {};
-        console.log(event.list);
+        const params = {}
+        console.log(event.list)
         // add the book to the corresponding list
       }
     },
     saveDialogAction(event) {
-      if (event.action === "close") {
-        this.showSaveDialog = false;
+      if (event.action === 'close') {
+        this.showSaveDialog = false
       } else {
-        const { rating, platform, dateRead } = event;
+        const { rating, platform, dateRead } = event
         axios
           .post(`${this.$store.state.apiUrl}/book`, {
             token: this.$store.state.loggedInUser.token,
             username: this.$store.state.loggedInUser.username,
             BookId: String(this.book.id),
-            list: "Read",
+            list: 'Read',
             rating,
             platform,
             dateRead
           })
-          .then(res => {
-            this.$route.push("/");
+          .then((res) => {
+            this.$route.push('/')
           })
-          .catch(error => {
-            console.log(error.message);
-          });
+          .catch((error) => {
+            console.log(error.message)
+          })
       }
     }
   }
-};
+}
 </script>
 
 <style>

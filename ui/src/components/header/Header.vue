@@ -33,16 +33,16 @@ export default {
     return {
       drawer: null,
       darkMode: false
-    };
+    }
   },
   methods: {
     changeDarkMode() {
       window.localStorage.setItem(
-        "darkMode",
+        'darkMode',
         JSON.stringify({ darkMode: !this.darkMode })
-      );
-      this.darkMode = !this.darkMode;
-      this.$vuetify.theme.dark = this.darkMode;
+      )
+      this.darkMode = !this.darkMode
+      this.$vuetify.theme.dark = this.darkMode
     }
   },
   computed: {
@@ -50,15 +50,15 @@ export default {
   },
   mounted() {
     try {
-      const isDarkMode = JSON.parse(window.localStorage.getItem("darkMode"))
-        .darkMode;
-      this.darkMode = isDarkMode;
-      this.$vuetify.theme.dark = isDarkMode;
-    } catch(error){
+      const isDarkMode = JSON.parse(window.localStorage.getItem('darkMode'))
+        .darkMode
+      this.darkMode = isDarkMode
+      this.$vuetify.theme.dark = isDarkMode
+    } catch (error) {
       // it's fine, theres no previous dark mode setting
     }
   }
-};
+}
 </script>
 
 <style lang='sass'>

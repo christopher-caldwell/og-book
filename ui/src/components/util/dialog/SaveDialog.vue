@@ -37,40 +37,41 @@
 </template>
 
 <script>
-import moment from "moment";
+import moment from 'moment'
+
 export default {
   props: {
     showPopup: Boolean
   },
   data() {
     return {
-      platform: "",
+      platform: '',
       rating: 0,
-      platforms: ["Audiobook", "Physical Copy", "Combination"],
+      platforms: ['Audiobook', 'Physical Copy', 'Combination'],
       menu1: false,
       dateRead: new Date().toISOString().substr(0, 10),
       max: new Date().toISOString().substr(0, 10)
-    };
+    }
   },
   methods: {
     closePopup(event) {
-      const { platform, rating, dateRead } = this;
-      this.$emit("closePopup", {
+      const { platform, rating, dateRead } = this
+      this.$emit('closePopup', {
         action: event,
         platform,
         rating,
         dateRead
-      });
+      })
     }
   },
   computed: {
     computedDateFormattedMomentjs() {
       return this.dateRead
-        ? moment(this.dateRead).format("dddd, MMMM Do YYYY")
-        : "";
+        ? moment(this.dateRead).format('dddd, MMMM Do YYYY')
+        : ''
     }
   }
-};
+}
 </script>
 
 <style scoped>

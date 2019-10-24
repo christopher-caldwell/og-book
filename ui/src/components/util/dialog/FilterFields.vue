@@ -1,19 +1,19 @@
 <template>
-  
+
 </template>
 
 
 <script>
 
 export default {
-  mounted(){
+  mounted() {
     console.log(this.searchTerm)
   },
-  data(){
+  data() {
     return {
-      author: "",
+      author: '',
       era: null,
-      eras: ["The Old Republic", "Prequel", "Clone Wars", "Early Empire", "Rebellion", "Post Endor", "New Republic"]
+      eras: ['The Old Republic', 'Prequel', 'Clone Wars', 'Early Empire', 'Rebellion', 'Post Endor', 'New Republic']
 
     }
   },

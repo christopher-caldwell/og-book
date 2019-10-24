@@ -5,11 +5,12 @@
 
 <script>
 import Crawl from '@/components/util/Crawl'
+
 export default {
   components: {
     Crawl
   },
-};
+}
 </script>
 
 <style lang='sass' scoped>
@@ -18,7 +19,7 @@ export default {
   z-index: 1
   height: 100vh
   background-color: black
-.shown-menu 
+.shown-menu
   background-color: white
   height: 100px
   width: 100px

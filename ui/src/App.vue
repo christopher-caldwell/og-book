@@ -20,14 +20,14 @@ export default {
     ...mapActions(['boot'])
   },
   computed: {
-    applicationIsReady(){
+    applicationIsReady() {
       return this.$store.isApplicationReady
     }
   },
-  created(){
+  created() {
     this.boot()
   }
-};
+}
 </script>
 
 <style lang='sass'>

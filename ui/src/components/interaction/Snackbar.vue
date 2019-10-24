@@ -12,38 +12,38 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      snackbarColor: {
-        type: String,
-        required: false,
-        default: 'error'
-      },
-      text: {
-        type: String,
-        required: true,
-      },
-      // default value from v-model
-      value: {
-        type: Boolean,
-        required: true
-      },
-      snackbarTimeout: {
-        type: Number,
-        required: false,
-        default: 3000
-      },
+export default {
+  props: {
+    snackbarColor: {
+      type: String,
+      required: false,
+      default: 'error'
     },
-    computed: {
-      isShown: {
-        get() {return this.value},
-        set(isShown) { this.$emit('input', isShown)}
-      }
+    text: {
+      type: String,
+      required: true,
     },
-    methods: {
-      closeSnackBar(){
-        this.$emit('input', false)
-      }
+    // default value from v-model
+    value: {
+      type: Boolean,
+      required: true
+    },
+    snackbarTimeout: {
+      type: Number,
+      required: false,
+      default: 3000
+    },
+  },
+  computed: {
+    isShown: {
+      get() { return this.value },
+      set(isShown) { this.$emit('input', isShown) }
+    }
+  },
+  methods: {
+    closeSnackBar() {
+      this.$emit('input', false)
     }
   }
+}
 </script>

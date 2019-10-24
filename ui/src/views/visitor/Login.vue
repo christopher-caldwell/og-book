@@ -37,7 +37,7 @@
         router-link(:to={name: 'ForgotPassword'}) Forgot password?
       v-row(justify='end')
         v-btn(
-          @click.prevent="submitEmail" 
+          @click.prevent="submitEmail"
           type='submit'
           :disabled="isLoading"
         ) Login
@@ -54,7 +54,7 @@ export default {
   components: {
     Snackbar,
   },
-  data () {
+  data() {
     return {
       showPass: false,
       snackbarText: '',
@@ -79,10 +79,10 @@ export default {
   },
   methods: {
     ...mapActions(['registerUser']),
-    updateEmail(emailAddress){
+    updateEmail(emailAddress) {
       this.emailAddress = emailAddress
     },
-    submitEmail(){
+    submitEmail() {
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.isInputErrors = true
@@ -96,7 +96,7 @@ export default {
         this.login()
       }
     },
-    async login () {
+    async login() {
       this.isLoading = true
       try {
         setTimeout(() => {
@@ -119,11 +119,11 @@ export default {
     }
   },
   computed: {
-    passwordErrors(){
-      const errorMessages = [];
+    passwordErrors() {
+      const errorMessages = []
       if (!this.$v.password.$dirty) return errorMessages
       !this.$v.password.required && errorMessages.push('Field is required')
-      return errorMessages;
+      return errorMessages
     },
   }
 }

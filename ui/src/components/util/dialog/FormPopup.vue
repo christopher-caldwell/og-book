@@ -40,22 +40,23 @@
 </template>
 
 <script>
-import FilterFields from "./FilterFields";
+import FilterFields from './FilterFields'
+
 export default {
   components: {
     FilterFields
   },
   computed: {
     open() {
-      return this.$store.state.formPopup;
+      return this.$store.state.formPopup
     }
   },
   methods: {
     close(event) {
-      this.$store.commit("toggleFormPopup", "close");
+      this.$store.commit('toggleFormPopup', 'close')
     },
     filter(event) {
-      event.preventDefault();
+      event.preventDefault()
       this.$validator.validateAll().then(() => {
         const filter = {
           author: this.author,
@@ -63,43 +64,43 @@ export default {
           legends: this.legends,
           author: this.author,
           title: this.title
-        };
-        this.$emit("filter", filter);
-        this.$store.commit("toggleFormPopup", "close");
-      });
+        }
+        this.$emit('filter', filter)
+        this.$store.commit('toggleFormPopup', 'close')
+      })
     }
   },
   $_veeValidate: {
-    validator: "new"
+    validator: 'new'
   },
 
   data: () => ({
-    era: "",
+    era: '',
     eras: [
-      "The Old Republic",
-      "Prequel",
-      "Clone Wars",
-      "Early Empire",
-      "Rebellion",
-      "Post Endor",
-      "New Republic"
+      'The Old Republic',
+      'Prequel',
+      'Clone Wars',
+      'Early Empire',
+      'Rebellion',
+      'Post Endor',
+      'New Republic'
     ],
-    author: "",
-    legends: "",
-    title: "",
+    author: '',
+    legends: '',
+    title: '',
     dictionary: {
       custom: {
         select: {
-          required: "Select field is required"
+          required: 'Select field is required'
         }
       }
     }
   }),
 
   mounted() {
-    this.$validator.localize("en", this.dictionary);
+    this.$validator.localize('en', this.dictionary)
   }
-};
+}
 </script>
 
 <style>

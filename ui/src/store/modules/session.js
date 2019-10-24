@@ -7,43 +7,42 @@ export default {
     isAuthenticated: false
   },
   getters: {
-    authToken(state){
+    authToken(state) {
       return state.token
     },
     allowableRoutes(state) {
       const isSessionValid = state.expiredDate > Date.now()
-      if(state.user.isAuthenticated && isSessionValid && state.user.role === 'admin') return authenticatedRoutes
-      else if(state.user.isAuthenticated && isSessionValid && state.user.role === 'user') return regularAdminRoutes
-      else return visitorRoutes
+      if (state.user.isAuthenticated && isSessionValid && state.user.role === 'admin') return authenticatedRoutes
+      if (state.user.isAuthenticated && isSessionValid && state.user.role === 'user') return regularAdminRoutes
+      return visitorRoutes
     },
   },
   actions: {
-    beginNewSession({ commit }, token){
+    beginNewSession({ commit }, token) {
       commit('UPDATE_SESSION', token)
     },
-    restoreSessionFromLocalStorage({ commit }){
+    restoreSessionFromLocalStorage({ commit }) {
       const previousSession = JSON.parse(localStorage.getItem('session'))
-      if(previousSession && previousSession > Date.now()){
+      if (previousSession && previousSession > Date.now()) {
         commit('UPDATE_SESSION', previousSession.token)
       }
     },
-    endSession({ commit }){
+    endSession({ commit }) {
       commit('END_SESSION')
     }
   },
   mutations: {
-    UPDATE_SESSION(state, token){
-      localStorage.setItem('session', JSON.stringify({ 
-        token, 
-        expiredDate: Date.now() + timeSessionIsValid, 
-        isAuthenticated: true 
+    UPDATE_SESSION(state, token) {
+      localStorage.setItem('session', JSON.stringify({
+        token,
+        expiredDate: Date.now() + timeSessionIsValid,
+        isAuthenticated: true
       }))
       state.token = token
       state.expiredDate = Date.now() + timeSessionIsValid
       state.isAuthenticated = true
-
     },
-    END_SESSION(state){
+    END_SESSION(state) {
       localStorage.setItem('session', JSON.stringify({ token, expiredDate: 0, isAuthenticated: false }))
       state.token = ''
       state.isAuthenticated = false

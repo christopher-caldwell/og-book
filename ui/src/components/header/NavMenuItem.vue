@@ -2,7 +2,7 @@
   router-link.link(:to="{path: route.path}" v-if="!route.divider")
     v-list-item
       v-list-item-action
-        v-icon {{route.icon}}    
+        v-icon {{route.icon}}
       v-list-item-content
         v-list-item-title {{route.title}}
   span(v-else)
@@ -17,17 +17,17 @@ export default {
     route: Object
   },
   computed: {
-    institutionId(){
+    institutionId() {
       return '123'
     }
   },
-};
+}
 </script>
 
 <style lang='sass' scoped>
-a 
+a
   text-decoration: none
-.link 
+.link
   width: 100%
   display: flex
   justify-content: space-between

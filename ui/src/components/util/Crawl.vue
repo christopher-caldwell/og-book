@@ -8,7 +8,7 @@
           p SW Books
           h1 Welcome!
         p Other stuff That is very important to things amongst other things
-        p Stuff    
+        p Stuff
 </template>
 
 
@@ -17,7 +17,7 @@
   height: 100vh
   width: 100%
 
-.fade 
+.fade
   position: relative
   width: 100%
   min-height: 60vh
@@ -25,7 +25,7 @@
   background-image: linear-gradient(0deg, transparent, black 75%)
   z-index: 1
 
-.star-wars 
+.star-wars
   display: flex
   justify-content: center
   position: relative
@@ -40,13 +40,13 @@
   perspective: 400px
   text-align: justify
 
-.crawl 
+.crawl
   width: 80%
   position: relative
   top: 9999px
   transform-origin: 50% 100%
   animation: crawl 200s linear
-  & .crawl-title 
+  & .crawl-title
   font-size: 60%
   text-align: center
   & h1
@@ -57,7 +57,7 @@
   0%
     top: 0
     transform: rotateX(20deg) translateZ(0)
-  100% 
+  100%
     top: -6000px
     transform: rotateX(25deg) translateZ(-2500px)
 

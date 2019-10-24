@@ -1,6 +1,6 @@
 <template lang='pug'>
   div.text-center
-    v-dialog(:value="isDialogOpen" :width="windowWidth" @click:outside="emitCloseDialog('wait')") 
+    v-dialog(:value="isDialogOpen" :width="windowWidth" @click:outside="emitCloseDialog('wait')")
       v-card
         v-card-title {{ title }}
         v-card-text.
@@ -14,44 +14,44 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      confirmationText: {
-        type: String,
-        required: false,
-        default: 'Yes'
-      },
-      cancelText: {
-        type: String,
-        required: false,
-        default: 'No'
-      },
-      title: {
-        type: String,
-        required: true
-      },
-      content: {
-        type: String,
-        required: true
-      },
-      prompt: {
-        type: String,
-      },
-      isDialogOpen: {
-        type: Boolean,
-        required: true,
-        default: false
-      },
-      windowWidth: {
-        type: String,
-        required: false,
-        default: '500'
-      }
+export default {
+  props: {
+    confirmationText: {
+      type: String,
+      required: false,
+      default: 'Yes'
     },
-    methods: {
-      emitCloseDialog(determination){
-        this.$emit('closeDialog', determination)
-      }
+    cancelText: {
+      type: String,
+      required: false,
+      default: 'No'
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    content: {
+      type: String,
+      required: true
+    },
+    prompt: {
+      type: String,
+    },
+    isDialogOpen: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    windowWidth: {
+      type: String,
+      required: false,
+      default: '500'
+    }
+  },
+  methods: {
+    emitCloseDialog(determination) {
+      this.$emit('closeDialog', determination)
     }
   }
+}
 </script>

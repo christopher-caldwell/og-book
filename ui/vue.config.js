@@ -11,7 +11,7 @@ module.exports = {
     'vuetify'
   ],
   productionSourceMap: areSourceMapsIncluded,
-  configureWebpack:{
+  configureWebpack: {
     performance: {
       hints: false
     },

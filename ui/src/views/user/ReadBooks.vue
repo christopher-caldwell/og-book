@@ -53,75 +53,75 @@
   </section>
 </template>
 <script>
-import axios from "axios";
-import books from "../../staticData/books.js";
+import axios from 'axios'
+import books from '../../staticData/books.js'
 
 export default {
   data() {
     return {
-      search: "",
-      list: "",
-      lists: ["Read", "Wishlist", "In Progress", "Favorites"],
+      search: '',
+      list: '',
+      lists: ['Read', 'Wishlist', 'In Progress', 'Favorites'],
       mobile: false,
       mobileHeaders: [
         {
-          text: "Name",
-          align: "left",
+          text: 'Name',
+          align: 'left',
           sortable: false,
-          value: "title"
+          value: 'title'
         },
-        { text: "Author", value: "author" },
-        { text: "Era", value: "author" }
+        { text: 'Author', value: 'author' },
+        { text: 'Era', value: 'author' }
       ],
       headers: [
         {
-          text: "Name",
-          align: "left",
+          text: 'Name',
+          align: 'left',
           sortable: false,
-          value: "title"
+          value: 'title'
         },
-        { text: "Author", value: "author" },
-        { text: "Era", value: "carbs" },
-        { text: "Legends", value: "protein" },
-        { text: "Platform", value: "iron" },
-        { text: "Rating", value: "iron" }
+        { text: 'Author', value: 'author' },
+        { text: 'Era', value: 'carbs' },
+        { text: 'Legends', value: 'protein' },
+        { text: 'Platform', value: 'iron' },
+        { text: 'Rating', value: 'iron' }
       ],
       books: []
-    };
+    }
   },
   beforeMount() {
     if (window.innerWidth < 900) {
-      this.mobile = true;
+      this.mobile = true
     }
-    const { apiUrl, loggedInUser } = this.$store.state;
-    this.refresh();
+    const { apiUrl, loggedInUser } = this.$store.state
+    this.refresh()
   },
   methods: {
     refresh() {
-      const { apiUrl, loggedInUser } = this.$store.state;
+      const { apiUrl, loggedInUser } = this.$store.state
       axios
         .get(`${apiUrl}/book?username=${loggedInUser.username}&list=Read`)
-        .then(res => {
-          const fetchedBooks = res.data.Items;
-          const readBooks = [];
-          fetchedBooks.forEach(fetchedBook => {
-            books.forEach(book => {
+        .then((res) => {
+          const fetchedBooks = res.data.Items
+          const readBooks = []
+          fetchedBooks.forEach((fetchedBook) => {
+            books.forEach((book) => {
               if (fetchedBook.BookId === String(book.id)) {
                 readBooks.push({
                   ...fetchedBook,
                   ...book
-                });
+                })
               }
-            });
-          });
-          this.books = readBooks;
+            })
+          })
+          this.books = readBooks
         })
-        .catch(error => {
-          console.log(error);
-        });
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
-};
+}
 </script>
 
 <style>

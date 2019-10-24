@@ -34,25 +34,25 @@
 </template>
 
 <script>
-  export default {
-    computed: {
-      show(){
-        return this.$store.state.popupShown
-      },
-      title(){
-        return this.$store.state.popupInfo.title
-      },
-      content(){
-        return this.$store.state.popupInfo.content
-      },
-      confirmation(){
-        return this.$store.state.popupInfo.confirmation
-      }
+export default {
+  computed: {
+    show() {
+      return this.$store.state.popupShown
     },
-    methods: {
-      closePopup(){
-        this.$store.commit('hidePopup')
-      }
+    title() {
+      return this.$store.state.popupInfo.title
+    },
+    content() {
+      return this.$store.state.popupInfo.content
+    },
+    confirmation() {
+      return this.$store.state.popupInfo.confirmation
+    }
+  },
+  methods: {
+    closePopup() {
+      this.$store.commit('hidePopup')
     }
   }
+}
 </script>
