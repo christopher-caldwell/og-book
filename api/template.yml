@@ -155,12 +155,12 @@ Resources:
       AttributeDefinitions:
         - AttributeName: identifier
           AttributeType: S
-        - AttributeName: resourceType
+        - AttributeName: resourceDescription
           AttributeType: S
       KeySchema:
         - AttributeName: identifier
           KeyType: HASH
-        - AttributeName: resourceType
+        - AttributeName: resourceDescription
           KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: 5
