@@ -3,15 +3,19 @@ import { timeSessionIsValid } from '@/store/constants'
 export default {
   state: {
     token: null,
-    expiredDate: null
+    expiredDate: null,
+    isAuthenticated: false
   },
   getters: {
-    isSessionValid(state){
-      return state.expiredDate > Date.now()
-    },
     authToken(state){
       return state.token
-    }
+    },
+    allowableRoutes(state) {
+      const isSessionValid = state.expiredDate > Date.now()
+      if(state.user.isAuthenticated && isSessionValid && state.user.role === 'admin') return authenticatedRoutes
+      else if(state.user.isAuthenticated && isSessionValid && state.user.role === 'user') return regularAdminRoutes
+      else return visitorRoutes
+    },
   },
   actions: {
     beginNewSession({ commit }, token){
@@ -29,13 +33,21 @@ export default {
   },
   mutations: {
     UPDATE_SESSION(state, token){
-      localStorage.setItem('session', JSON.stringify({ token, expiredDate: Date.now() + timeSessionIsValid }))
+      localStorage.setItem('session', JSON.stringify({ 
+        token, 
+        expiredDate: Date.now() + timeSessionIsValid, 
+        isAuthenticated: true 
+      }))
       state.token = token
       state.expiredDate = Date.now() + timeSessionIsValid
+      state.isAuthenticated = true
+
     },
     END_SESSION(state){
+      localStorage.setItem('session', JSON.stringify({ token, expiredDate: 0, isAuthenticated: false }))
       state.token = ''
-      expiredDate = 0
+      state.isAuthenticated = false
+      state.expiredDate = 0
     }
   }
 }

@@ -61,12 +61,11 @@ export default {
 };
 </script>
 
-<style lang="css">
-.find-me {
-  height: 40px;
-  width: 130px;
-  position: absolute;
-  bottom: 2%;
-  right: 2%;
-}
+<style lang='sass'>
+.find-me
+  height: 40px
+  width: 130px
+  position: absolute
+  bottom: 2%
+  right: 2%
 </style>

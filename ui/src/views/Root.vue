@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import Crawl from "@/components/util/Crawl";
+import Crawl from '@/components/util/Crawl'
 export default {
   components: {
     Crawl
