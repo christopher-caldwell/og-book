@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "source .env.local && vue-cli-service serve",
+    "build": "source .env.development && vue-cli-service build",
+    "build:qa": "source .env.qa && vue-cli-service build",
+    "build:prod": "source .env.prod && vue-cli-service build",
+    "deploy": "cd ../bash_scripts/ && sh deploy.sh",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
