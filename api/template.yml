@@ -53,7 +53,7 @@ Resources:
       Type: TOKEN
       IdentitySource: method.request.header.Auth
       Name: DefaultAuthorizer
-      RestApiId: !Ref FurryFriendsAPI
+      RestApiId: !Ref SWBooksAPI
 
 # User
   AdminRegister:
