@@ -7,7 +7,7 @@
 		"dev": "sh scripts/start-local-api.sh",
 		"deploy:dev": "sh scripts/cloudformation-deploy.sh",
 		"eslint": "eslint \"src/**/*.js\" --ignore-pattern node_modules/",
-		"recursive-install": "node scripts/recursive-install.js"
+		"recursive-install": "node scripts/recursiveInstall.js"
 	},
 	"author": "caldwell619",
 	"license": "ISC",
