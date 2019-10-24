@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     applicationIsReady() {
-      return this.$store.isApplicationReady
+      return this.$store.state.applicationIsReady
     }
   },
   created() {

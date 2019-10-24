@@ -2,19 +2,46 @@
 <template lang='pug'>
   div.crawl-cont
     div.fade
+    SplashMenu(:isShown="isMenuShown")
     section.star-wars
       div.crawl
         div.crawl-title
-          p SW Books
-          h1 Welcome!
-        p Other stuff That is very important to things amongst other things
-        p Stuff
+          p.staw-wars-font SW Books
+          h2.body-crawl-font Welcome!
+        p.body-crawl-font Other stuff That is very important to things amongst other things
+        p.body-crawl-font Stuff
+  
 </template>
+
+<script>
+  import SplashMenu from './SplashMenu.vue'
+  export default {
+    name: 'Crawl',
+    components: {
+      SplashMenu
+    },
+    data(){
+      return {
+        isMenuShown: false
+      }
+    },
+    mounted(){
+      setTimeout(() => {
+        this.isMenuShown = true
+      }, 15000)
+      // 60000
+    }
+  }
+</script>
 
 
 <style lang='sass' scoped>
+@import '@/styles/variables.sass'
+::-webkit-scrollbar 
+  width: 0px
+  background: transparent
 .crawl-cont
-  height: 100vh
+  height: 90vh
   width: 100%
 
 .fade
@@ -31,7 +58,7 @@
   position: relative
   height: 0vh
   width: 100%
-  color: #feda4a
+  color: $star-wars-yellow
   font-family: "Pathway Gothic One", sans-serif
   font-size: 250%
   font-weight: 600
@@ -45,7 +72,8 @@
   position: relative
   top: 9999px
   transform-origin: 50% 100%
-  animation: crawl 200s linear
+  // time it takes to scroll
+  animation: crawl 150s linear
   & .crawl-title
   font-size: 60%
   text-align: center

@@ -17,8 +17,9 @@ export default {
 .main-cont
   position: relative
   z-index: 1
-  height: 100vh
+  height: 92vh
   background-color: black
+  overflow: hidden
 .shown-menu
   background-color: white
   height: 100px
