@@ -2,7 +2,7 @@
   div
     v-navigation-drawer(v-model="drawer" app clipped)
       v-list.listing-listy.list(dense)
-        v-subheader Search
+        v-subheader Home
         v-divider
         NavMenuItem(v-for="(route, index) in allowableRoutes" :key="index" :route="route")
       div.find-me
@@ -17,7 +17,7 @@
       v-app-bar-nav-icon( @click.stop="drawer = !drawer")
       v-toolbar-title.full-width
         v-row(justify='space-between')
-          v-col Buy Now Admin
+          v-col SW Books
           v-col.flex-end(cols='2') {{ usersName }}
 </template>
 

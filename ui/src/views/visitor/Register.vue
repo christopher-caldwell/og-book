@@ -84,128 +84,134 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import { email, required } from 'vuelidate/lib/validators'
-import Snackbar from '@/components/interaction/Snackbar.vue'
+import { mapActions } from "vuex";
+import { email, required } from "vuelidate/lib/validators";
+import Snackbar from "@/components/interaction/Snackbar.vue";
 
 export default {
-  name: 'Login',
+  name: "Login",
   components: {
-    Snackbar,
+    Snackbar
   },
-  data () {
+  data() {
     return {
       showPass: false,
       showConfirmPass: false,
-      snackbarText: '',
+      snackbarText: "",
       showSnackbar: false,
       isInputErrors: false,
       inputErrorMessages: [],
       isLoading: false,
-      errorText: '',
-      snackbarColor: '',
+      errorText: "",
+      snackbarColor: "",
       snackbarTimeout: 2000,
-      emailAddress: '',
-      password: '',
-      confirmPassword: '',
-      firtName: '',
-      lastName: ''
-    }
+      emailAddress: "",
+      password: "",
+      confirmPassword: "",
+      firtName: "",
+      lastName: ""
+    };
   },
   validations: {
     emailAddress: {
       email,
-      required,
+      required
     },
     password: {
-      required,
+      required
     },
     confirmPassword: {
-      required,
+      required
     },
     firtName: {
-      required,
+      required
     },
     lastName: {
-      required,
-    },
+      required
+    }
   },
   methods: {
-    ...mapActions(['registerUser']),
-    updateEmail(emailAddress){
-      this.emailAddress = emailAddress
+    ...mapActions(["registerUser"]),
+    updateEmail(emailAddress) {
+      this.emailAddress = emailAddress;
     },
-    submitEmail(){
-      this.$v.$touch()
+    submitEmail() {
+      this.$v.$touch();
       if (this.$v.$invalid) {
-        this.isInputErrors = true
-        !this.$v.emailAddress.email && this.inputErrorMessages.push('Must be a valid email')
-        !this.$v.emailAddress.required && this.inputErrorMessages.push('Field is required')
+        this.isInputErrors = true;
+        !this.$v.emailAddress.email &&
+          this.inputErrorMessages.push("Must be a valid email");
+        !this.$v.emailAddress.required &&
+          this.inputErrorMessages.push("Field is required");
       } else {
-        this.$v.$reset
-        this.inputErrorMessages = []
-        this.isInputErrors = false
-        this.verifyPassword()
+        this.$v.$reset;
+        this.inputErrorMessages = [];
+        this.isInputErrors = false;
+        this.verifyPassword();
       }
     },
-    verifyPassword(){
-      if(this.password === this.confirmPassword) {
-        this.errorText = ''
-        this.login()
+    verifyPassword() {
+      if (this.password === this.confirmPassword) {
+        this.errorText = "";
+        this.login();
       } else {
-        this.errorText = 'Passwords do not match'
-        return
+        this.errorText = "Passwords do not match";
+        return;
       }
     },
-    async login () {
-      this.isLoading = true
+    async login() {
+      this.isLoading = true;
       try {
         setTimeout(() => {
-          this.snackbarTimeout = 0
-          this.snackbarColor = 'blue accent-2'
-          this.snackbarText = 'Still loading..'
-          this.showSnackbar = true
-        }, 5000)
-        await this.registerUser({ identifer: this.emailAddress, plainTextPassword: this.password })
-        this.isLoading = false
-        this.showSnackbar = false
-        this.$router.push('/home/search/')
+          this.snackbarTimeout = 0;
+          this.snackbarColor = "blue accent-2";
+          this.snackbarText = "Still loading..";
+          this.showSnackbar = true;
+        }, 5000);
+        await this.registerUser({
+          identifer: this.emailAddress,
+          plainTextPassword: this.password
+        });
+        this.isLoading = false;
+        this.showSnackbar = false;
+        this.$router.push("/home/search/");
       } catch (loginErr) {
-        this.isLoading = false
-        this.snackbarColor = 'error'
-        this.snackbarText = 'There was a problem with your request'
-        this.snackbarTimeout = 3000
-        this.showSnackbar = true
+        this.isLoading = false;
+        this.snackbarColor = "error";
+        this.snackbarText = "There was a problem with your request";
+        this.snackbarTimeout = 3000;
+        this.showSnackbar = true;
       }
     }
   },
   computed: {
-    firstNameErrors(){
+    firstNameErrors() {
       const errorMessages = [];
-      if (!this.$v.firtName.$dirty) return errorMessages
-      !this.$v.firtName.required && errorMessages.push('Field is required')
+      if (!this.$v.firtName.$dirty) return errorMessages;
+      !this.$v.firtName.required && errorMessages.push("Field is required");
       return errorMessages;
     },
-    lastNameErrors(){
+    lastNameErrors() {
       const errorMessages = [];
-      if (!this.$v.password.$dirty) return errorMessages
-      !this.$v.lastName.required && errorMessages.push('Field is required')
+      if (!this.$v.password.$dirty) return errorMessages;
+      !this.$v.lastName.required && errorMessages.push("Field is required");
       return errorMessages;
     },
-    passwordErrors(){
+    passwordErrors() {
       const errorMessages = [];
-      if (!this.$v.password.$dirty) return errorMessages
-      !this.$v.password.required && errorMessages.push('Field is required')
+      if (!this.$v.password.$dirty) return errorMessages;
+      !this.$v.password.required && errorMessages.push("Field is required");
       return errorMessages;
     },
-    confirmPasswordErrorsErrors(){
+    confirmPasswordErrorsErrors() {
       const errorMessages = [];
-      if (!this.$v.confirmPassword.$dirty) return errorMessages
-      !this.$v.confirmPassword.required && errorMessages.push('Field is required')
+      if (!this.$v.confirmPassword.$dirty) return errorMessages;
+      !this.$v.confirmPassword.required &&
+        errorMessages.push("Field is required");
       return errorMessages;
-    },
+    }
   }
-}
+};
 </script>
 
 <style lang="sass">

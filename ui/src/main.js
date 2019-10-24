@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from '@/App.vue'
-import router from '@/routes/routes'
-import store from '@/store/store'
+import router from '@/router/index'
+import store from '@/store/index'
 import Vuetify from '@/plugins/Vuetify'
 import Vuelidate from '@/plugins/Vuelidate'
 

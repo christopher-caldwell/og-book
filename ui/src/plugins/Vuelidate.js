@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import Vuelidate from 'Vuelidate'
+import Vuelidate from 'vuelidate'
 
 Vue.use(Vuelidate)

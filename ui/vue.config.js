@@ -7,6 +7,9 @@ module.exports = {
       openAnalyzer: false,
     },
   },
+  transpileDependencies: [
+    'vuetify'
+  ],
   productionSourceMap: areSourceMapsIncluded,
   configureWebpack:{
     performance: {
@@ -18,4 +21,5 @@ module.exports = {
         maxSize: 200000,
       }
     }
+  }
 }

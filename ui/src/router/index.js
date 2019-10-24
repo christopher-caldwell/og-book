@@ -6,15 +6,15 @@ const Visitor = () =>  import('@/views/Visitor.vue')
 const User = () =>  import('@/views/User.vue')
 
 // visitors
-const Login = () =>  import('@/components/visitor/Login.vue')
-const Register = () =>  import('@/components/visitor/Register.vue')
+const Login = () =>  import('@/views/visitor/Login.vue')
+const Register = () =>  import('@/views/visitor/Register.vue')
 const ForgotPassword = () => import('@/views/visitor/ForgotPassword.vue')
 
 // authenticated
-const Profile = () =>  import('@/components/user/Profile.vue')
-const BookList = () =>  import('@/components/visitor/BookList.vue')
-const DetailedBook = () =>  import('@/components/visitor/DetailedBook.vue')
-const ReadBooks = () =>  import('@/components/user/ReadBooks.vue')
+const Profile = () =>  import('@/views/user/Profile.vue')
+const BookList = () =>  import('@/views/user/books/BookList.vue')
+const DetailedBook = () =>  import('@/views/user/books/DetailedBook.vue')
+const ReadBooks = () =>  import('@/views/user/books/ReadBooks.vue')
 
 Vue.use(VueRouter)
 
