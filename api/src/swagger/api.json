@@ -167,7 +167,7 @@
         },
         "x-amazon-apigateway-integration": {
           "uri": {
-            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${EmployeeLogin.Arn}/invocations"
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${UserLogin.Arn}/invocations"
           },
           "passthroughBehavior": "when_no_match",
           "httpMethod": "POST",
@@ -176,10 +176,10 @@
         "parameters": [
           {
             "in": "body",
-            "name": "EmployeeLogin",
+            "name": "UserLogin",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/EmployeeLogin"
+              "$ref": "#/definitions/UserLogin"
             }
           }
         ]
