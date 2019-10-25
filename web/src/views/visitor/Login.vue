@@ -1,5 +1,14 @@
 <template lang="pug">
-  div.login-root.flex-centered
+  div.login-root.flex-centered#space
+    div.stars
+    div.stars
+    div.stars
+    div.stars
+    div.stars
+    div.stars
+    div.stars
+    div.stars
+    div.stars
     Snackbar(
       v-model="showSnackbar"
       :text="snackbarText"
@@ -8,7 +17,7 @@
     )
     form.login-box
       v-row.login-header-row
-        h1 Login
+        h1.star-wars-font#login-header Login
       v-row
         v-text-field(
           label="Email"
@@ -130,13 +139,16 @@ export default {
 </script>
 
 <style lang="sass">
-  .login-root
-    height: 100%
-    width: 100%
-  .login-box
-    width: 70%
-    @media only screen and (min-width: 768px)
-      width: 40%
-  .login-header-row
-    margin-bottom: 5%
+@import '@/styles/starfield.sass'
+#login-header
+  letter-spacing: 3px
+.login-root
+  height: 100%
+  width: 100%
+.login-box
+  width: 70%
+  @media only screen and (min-width: 768px)
+    width: 40%
+.login-header-row
+  margin-bottom: 5%
 </style>
