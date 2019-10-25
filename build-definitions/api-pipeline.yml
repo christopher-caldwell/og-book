@@ -27,7 +27,7 @@ stages:
               npm run recursive-install
           - task: AWSCLI@1
             inputs:
-              awsCredentials: "DevOps"
+              awsCredentials: "personal"
               regionName: "us-east-1"
               awsCommand: "cloudformation"
               awsSubCommand: "package"
