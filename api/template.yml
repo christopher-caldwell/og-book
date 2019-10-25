@@ -20,7 +20,7 @@ Resources:
     Properties:
       CodeUri: src/lambdas/options/
       Handler: index.handler
-      FunctionName: cors_handler_FF
+      FunctionName: Local_Cors
       Timeout: 30
       Events:
         ClockInOptions:
