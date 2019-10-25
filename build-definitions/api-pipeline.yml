@@ -12,31 +12,7 @@ trigger:
 variables:
   S3_BUCKET: furry-friends-builds
 
-stages:
-  - stage: Configure
-    jobs:
-      - job: Setup
-        pool:
-          vmImage: "Ubuntu-16.04" # defines runtime
-
-  - stage: Testing
-    jobs:
-      - job: Linting
-        steps:
-          - script: |
-              cd api/
-              npm ci --quiet
-              npm run eslint
-            displayName: "Linting"
-  - stage: Linting
-    jobs:
-      - job: Run_tests
-        steps:
-          - script: |
-              cd api/
-              npm ci --quiet
-              npm run test
-            displayName: "Running Tests"
+stages:  
   - stage: Build
     jobs:
       - job: Package_CloudFormation_Template

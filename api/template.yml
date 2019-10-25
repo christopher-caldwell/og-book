@@ -28,32 +28,7 @@ Resources:
           Properties:
             RestApiId: !Ref SWBooksAPI
             Path: /{cors+}
-            Method: OPTIONS
-
-  LambdaAuthorizer:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/lambdas/authorizer/
-      Handler: index.handler
-  
-  Authorizer:
-    Type: 'AWS::ApiGateway::Authorizer'
-    Properties:
-      AuthorizerCredentials: arn:aws:iam::867997404618:role/BasicLambdaRole
-      AuthorizerResultTtlInSeconds: '300'
-      AuthorizerUri: !Join 
-        - ''
-        - - 'arn:aws:apigateway:'
-          - !Ref 'AWS::Region'
-          - ':lambda:path/2015-03-31/functions/'
-          - !GetAtt 
-            - LambdaAuthorizer
-            - Arn
-          - /invocations
-      Type: TOKEN
-      IdentitySource: method.request.header.Auth
-      Name: DefaultAuthorizer
-      RestApiId: !Ref SWBooksAPI
+            Method: OPTIONSqs
 
 # User
   UserCreate:
@@ -117,13 +92,6 @@ Resources:
 ########### API ###########
   SWBooksAPI:
     Type: AWS::Serverless::Api
-    Auth:
-      MyLambdaTokenAuth:
-        FunctionPayloadType: TOKEN
-        FunctionArn: !GetAtt LambdaAuthorizer.Arn
-        Identity:
-          Header: Authorization
-          ReauthorizeEvery: 300
     Properties:
       Name: SW-Books
       StageName: dev
