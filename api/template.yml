@@ -56,20 +56,6 @@ Resources:
       RestApiId: !Ref SWBooksAPI
 
 # User
-  AdminRegister:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/lambdas/admin/create
-      Handler: index.handler
-      Role: arn:aws:iam::867997404618:role/BasicLambdaRole
-      Events:
-        Register:
-          Type: Api
-          Properties:
-            Path: /admin/create/
-            Method: post
-            RestApiId: !Ref SWBooksAPI
-
   UserCreate:
     Type: AWS::Serverless::Function
     Properties:
@@ -109,7 +95,7 @@ Resources:
         Register:
           Type: Api
           Properties:
-            Path: /book/save
+            Path: /book
             Method: post
             RestApiId: !Ref SWBooksAPI
 
@@ -124,7 +110,7 @@ Resources:
           Type: Api
           Properties:
             Path: /book/search
-            Method: post
+            Method: get
             RestApiId: !Ref SWBooksAPI
 
   
