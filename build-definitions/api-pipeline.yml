@@ -10,7 +10,7 @@ trigger:
       - ui/*
 
 variables:
-  S3_BUCKET: furry-friends-builds
+  S3_BUCKET: sw-books-builds
 
 stages:
   - stage: Configure
